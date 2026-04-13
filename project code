@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Result Management System</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            width: 300px;
+            margin: auto;
+            margin-top: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        h1 {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Student Result Management System</h1>
+
+<div class="container">
+    <input type="text" id="name" placeholder="Enter Student Name"><br>
+    <input type="number" id="marks1" placeholder="Subject 1 Marks"><br>
+    <input type="number" id="marks2" placeholder="Subject 2 Marks"><br>
+    <input type="number" id="marks3" placeholder="Subject 3 Marks"><br>
+
+    <button onclick="calculateResult()">Calculate Result</button>
+
+    <h2 id="result"></h2>
+</div>
+
+<script>
+    function calculateResult() {
+        let name = document.getElementById("name").value;
+        let m1 = parseInt(document.getElementById("marks1").value);
+        let m2 = parseInt(document.getElementById("marks2").value);
+        let m3 = parseInt(document.getElementById("marks3").value);
+
+        if (!name || isNaN(m1) || isNaN(m2) || isNaN(m3)) {
+            alert("Please fill all fields correctly!");
+            return;
+        }
+
+        let total = m1 + m2 + m3;
+        let percentage = total / 3;
+        let grade = "";
+
+        if (percentage >= 75) {
+            grade = "Distinction";
+        } else if (percentage >= 60) {
+            grade = "First Class";
+        } else if (percentage >= 50) {
+            grade = "Second Class";
+        } else {
+            grade = "Fail";
+        }
+
+        document.getElementById("result").innerHTML =
+            "Name: " + name +
+            "<br>Total: " + total +
+            "<br>Percentage: " + percentage.toFixed(2) + "%" +
+            "<br>Grade: " + grade;
+    }
+</script>
+
+</body>
+</html>
